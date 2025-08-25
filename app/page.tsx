@@ -35,11 +35,6 @@ export default function Home() {
                 Log in
               </Button>
             </Link>
-            <Link href="/signup">
-              <Button variant="default" size="sm" className="bg-white text-orange-500 hover:bg-gray-100">
-                Sign up
-              </Button>
-            </Link>
           </div>
         </div>
       </header>
