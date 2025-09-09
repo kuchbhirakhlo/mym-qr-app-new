@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator"
 import { Pizza, QrCode } from "lucide-react"
 import React from "react"
+import Link from "next/link"
 
 interface MenuItem {
   name: string
@@ -62,10 +63,39 @@ export function MenuContent({ id }: { id: string }) {
     setCart(prev => {
       const key = item.name;
       if (prev[key]) {
-        return { ...prev, [key]: { item, quantity: prev[key].quantity + 1 } };
+        return prev; // Already in cart, do nothing
       } else {
         return { ...prev, [key]: { item, quantity: 1 } };
       }
+    });
+  };
+
+  // Increment item quantity in cart
+  const handleIncrement = (item: MenuItem) => {
+    setCart(prev => {
+      const key = item.name;
+      if (prev[key]) {
+        return { ...prev, [key]: { item, quantity: prev[key].quantity + 1 } };
+      }
+      return prev;
+    });
+  };
+
+  // Decrement item quantity in cart
+  const handleDecrement = (item: MenuItem) => {
+    setCart(prev => {
+      const key = item.name;
+      if (prev[key]) {
+        const newQty = prev[key].quantity - 1;
+        if (newQty > 0) {
+          return { ...prev, [key]: { item, quantity: newQty } };
+        } else {
+          // Remove item from cart if quantity is 0
+          const { [key]: _, ...rest } = prev;
+          return rest;
+        }
+      }
+      return prev;
     });
   };
 
@@ -261,14 +291,33 @@ export function MenuContent({ id }: { id: string }) {
                         <div className="font-bold text-lg text-green-600 px-3 py-1 bg-green-50 rounded-full border border-green-100">
                           ₹{item.price.toFixed(2)}
                         </div>
-                        <button
-                          className="mt-1 px-3 py-1 bg-orange-500 hover:bg-orange-600 text-white rounded-full text-sm font-semibold shadow"
-                          onClick={() => handleAddToCart(item)}
-                        >
-                          Add to Cart
-                        </button>
-                        {cart[item.name] && (
-                          <span className="text-xs text-gray-600">In cart: {cart[item.name].quantity}</span>
+                        {!cart[item.name] ? (
+                          <button
+                            className="mt-1 px-3 py-1 bg-orange-500 hover:bg-orange-600 text-white rounded-full text-sm font-semibold shadow"
+                            onClick={() => handleAddToCart(item)}
+                          >
+                            Add to Cart
+                          </button>
+                        ) : (
+                          <div className="flex items-center gap-2 mt-1">
+                            <button
+                              className="px-2 py-1 bg-orange-200 text-orange-700 rounded-full font-bold text-sm"
+                              onClick={() => handleDecrement(item)}
+                              aria-label="Decrease quantity"
+                            >
+                              −
+                            </button>
+                            <span className="text-sm font-semibold text-orange-700">
+                              {cart[item.name].quantity} {cart[item.name].quantity === 1 ? 'item added' : 'items added'}
+                            </span>
+                            <button
+                              className="px-2 py-1 bg-orange-200 text-orange-700 rounded-full font-bold text-sm"
+                              onClick={() => handleIncrement(item)}
+                              aria-label="Increase quantity"
+                            >
+                              +
+                            </button>
+                          </div>
                         )}
                       </div>
                     </div>
@@ -320,7 +369,7 @@ export function MenuContent({ id }: { id: string }) {
           </div>
         )}
         <div className="text-center text-gray-500 text-sm mt-8 mb-12">
-          Make Your Menu powered by <span className="font-semibold text-orange-600">Proco Technologies</span>
+          Make Your Menu powered by <Link href="https://www.procotech.in" target="_blank" rel="noopener noreferrer" className="font-semibold text-orange-600">Proco Technologies</Link>
         </div>
       </div>
     </div>
