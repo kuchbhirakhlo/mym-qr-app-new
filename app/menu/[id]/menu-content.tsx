@@ -299,19 +299,24 @@ export function MenuContent({ id }: { id: string }) {
                             Add to Cart
                           </button>
                         ) : (
-                          <div className="flex items-center gap-2 mt-1">
+                          <div className="flex items-center gap-3 mt-2 p-2 bg-orange-50 rounded-lg border border-orange-100">
                             <button
-                              className="px-2 py-1 bg-orange-200 text-orange-700 rounded-full font-bold text-sm"
+                              className="w-8 h-8 flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white rounded-full font-bold text-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105"
                               onClick={() => handleDecrement(item)}
                               aria-label="Decrease quantity"
                             >
                               −
                             </button>
-                            <span className="text-sm font-semibold text-orange-700">
-                              {cart[item.name].quantity} {cart[item.name].quantity === 1 ? 'item added' : 'items added'}
-                            </span>
+                            <div className="flex flex-col items-center min-w-[60px]">
+                              <span className="text-lg font-bold text-orange-700">
+                                {cart[item.name].quantity}
+                              </span>
+                              <span className="text-xs text-orange-600">
+                                {cart[item.name].quantity === 1 ? 'item' : 'items'}
+                              </span>
+                            </div>
                             <button
-                              className="px-2 py-1 bg-orange-200 text-orange-700 rounded-full font-bold text-sm"
+                              className="w-8 h-8 flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white rounded-full font-bold text-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105"
                               onClick={() => handleIncrement(item)}
                               aria-label="Increase quantity"
                             >
@@ -368,6 +373,13 @@ export function MenuContent({ id }: { id: string }) {
             </div>
           </div>
         )}
+        <Image
+          src="/proco-computer-institute.png"
+          alt="proco-computer-institute"
+          width={40}
+          height={30}
+          className="h-30 w-full rounded-2xl"
+        />
         <div className="text-center text-gray-500 text-sm mt-8 mb-12">
           Make Your Menu powered by <Link href="https://www.procotech.in" target="_blank" rel="noopener noreferrer" className="font-semibold text-orange-600">Proco Technologies</Link>
         </div>
