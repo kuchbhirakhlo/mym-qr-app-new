@@ -14,7 +14,7 @@ export default function Home() {
               alt="Make Your Menu Logo"
               width={40}
               height={40}
-              className="h-24 w-auto rounded-2xl"
+              className="h-32 w-auto rounded-2xl"
             />
           </div>
           <nav className="hidden md:flex gap-6">
