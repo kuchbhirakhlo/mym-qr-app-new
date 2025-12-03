@@ -16,7 +16,7 @@ export default function Home() {
               height={40}
               className="h-14 w-auto rounded-2xl"
             />
-            <span className="text-white">MakeYourMenu</span>
+            <span className="text-white">MenuWala</span>
           </div>
           <nav className="hidden md:flex gap-6">
             <Link href="#features" className="text-sm font-medium text-white hover:underline underline-offset-4">
