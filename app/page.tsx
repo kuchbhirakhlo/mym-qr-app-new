@@ -10,13 +10,12 @@ export default function Home() {
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
           <div className="flex items-center gap-2 font-bold text-xl text-white">
             <Image
-              src="/menu-wala-logo.png"
+              src="/menu-wala-logo-new.png"
               alt="Make Your Menu Logo"
               width={40}
               height={40}
-              className="h-14 w-auto rounded-2xl"
+              className="h-24 w-auto rounded-2xl"
             />
-            <span className="text-white">MenuWala</span>
           </div>
           <nav className="hidden md:flex gap-6">
             <Link href="#features" className="text-sm font-medium text-white hover:underline underline-offset-4">
