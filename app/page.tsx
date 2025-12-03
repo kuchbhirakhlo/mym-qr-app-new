@@ -10,7 +10,7 @@ export default function Home() {
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
           <div className="flex items-center gap-2 font-bold text-xl text-white">
             <Image
-              src="/logo.png"
+              src="/menu-wala-logo.png"
               alt="Make Your Menu Logo"
               width={40}
               height={40}
